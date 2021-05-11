@@ -52,7 +52,7 @@ ingress:
       kubernetes.io/tls-acme: "true"
       cert-manager.io/cluster-issuer: letsencrypt-staging
   hosts:
-    - host: riigipilv.tld.ee
+    - host: rp-st-auction.infra.tld.ee
       paths:
       - path: /
         backend:
@@ -65,7 +65,7 @@ ingress:
   tls:
     - secretName: st-auction-cert
       hosts:
-        - riigipilv.tld.ee
+        - rp-st-auction.infra.tld.ee
 
 resources:
   # We usually recommend not to specify default resources and to leave this as a conscious
