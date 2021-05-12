@@ -3,9 +3,9 @@ entries:
   auction:
   - apiVersion: v2
     appVersion: 1.16.0
-    created: "2021-05-11T15:08:11.357987659+03:00"
+    created: "2021-05-12T16:47:08.573170902+03:00"
     description: A Helm chart for Auction centre
-    digest: f52981e3d0020dfccb1981ec8cbe3763a4a47220d27993feaf4e0ce04075f5f5
+    digest: da6ccbc3a7f8875f7d3906ef6eec333978a5f1a3c454299ec87c7c2c4afddb82
     name: auction
     type: application
     urls:
@@ -14,9 +14,9 @@ entries:
   rest-whois:
   - apiVersion: v2
     appVersion: 1.16.0
-    created: "2021-05-11T15:08:11.359027242+03:00"
+    created: "2021-05-12T16:47:08.573783264+03:00"
     description: A Helm chart rest whois
-    digest: 3f950c7b6b0ad01f90e00daeba4df18abfd992d6e018596bf997743ac0b76926
+    digest: 9076877efd4b5ca795fd3e3acd5719448a20590bea882556f05b4cd625ed5f74
     name: rest-whois
     type: application
     urls:
@@ -24,12 +24,12 @@ entries:
     version: 0.1.0
   whois:
   - apiVersion: v2
-    created: "2021-05-11T15:08:11.359737872+03:00"
+    created: "2021-05-12T16:47:08.574314399+03:00"
     description: A Helm chart for Whois service
-    digest: 721aa91e08be642cfeff8d759d09000445d3052318cab6d550ad2cd97b455e2c
+    digest: 20c6e361d6e75622a94b6d9adda9a92b047b9f85e7b3280e283e8e0ce1c00134
     name: whois
     type: application
     urls:
     - https://internetee.github.io/helm-charts/whois-0.1.0.tgz
     version: 0.1.0
-generated: "2021-05-11T15:08:11.356338118+03:00"
+generated: "2021-05-12T16:47:08.572498205+03:00"

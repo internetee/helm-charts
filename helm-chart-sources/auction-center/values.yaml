@@ -13,6 +13,7 @@ image:
 imagePullSecrets: regcred-eisbot
 nameOverride: "auction"
 fullnameOverride: "auction-st"
+sha: "o0o0o0o"
 
 serviceAccount:
   # Specifies whether a service account should be created

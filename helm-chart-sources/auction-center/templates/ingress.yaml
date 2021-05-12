@@ -7,7 +7,7 @@ apiVersion: extensions/v1beta1
 {{- end }}
 kind: Ingress
 metadata:
-  name: {{ $fullName }}
+  name: {{ .Values.sha }}-{{ $fullName }}
   labels:
     {{- include "charts.labels" . | nindent 4 }}
   {{- with .Values.ingress.annotations }}

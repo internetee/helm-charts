@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ include "charts.fullname" . }}
+  name: {{ .Values.sha }}-{{ include "charts.fullname" . }}
   labels:
     {{- include "charts.labels" . | nindent 4 }}
     auction: rails
