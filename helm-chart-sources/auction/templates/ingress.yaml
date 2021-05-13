@@ -26,18 +26,15 @@ spec:
     {{- end }}
   {{- end }}
   rules:
-    {{- range .Values.ingress.hosts }}
     - host: {{ .host | quote }}
       http:
         paths:
           - path: /
             backend:
-              serviceName: auction-st-rails
+              serviceName: {{ .Values.sha }}-{{ $fullName }}-rails
               servicePort: 3000
           - path: /packs
             backend:
-              serviceName: auction-st-static
+              serviceName: {{ .Values.sha }}-{{ $fullName }}-static
               servicePort: 80
-
-    {{- end }}
   {{- end }}
