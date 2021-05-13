@@ -2,7 +2,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ .Values.sha }}-{{ include "charts.fullname" . }}-scheduler
+  name: st-{{ .Values.sha }}-{{ include "charts.name" . }}-scheduler
   labels:
     {{- include "charts.labels" . | nindent 4 }}
     auction: scheduler

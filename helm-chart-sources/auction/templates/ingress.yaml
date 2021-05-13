@@ -31,10 +31,10 @@ spec:
         paths:
           - path: /
             backend:
-              serviceName: {{ .Values.sha }}-{{ $fullName }}-rails
+              serviceName: st-{{ .Values.sha }}-{{ include "charts.name" . }}-rails
               servicePort: 3000
           - path: /packs
             backend:
-              serviceName: {{ .Values.sha }}-{{ $fullName }}-static
+              serviceName: st-{{ .Values.sha }}-{{ include "charts.name" . }}-static
               servicePort: 80
   {{- end }}
