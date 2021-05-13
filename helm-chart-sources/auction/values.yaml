@@ -47,6 +47,10 @@ service:
 scheduler:
   enabled: false
 
+host: rp-st-auction.infra.tld.ee
+tls:
+  secretName: st-auction-cert
+
 ingress:
   enabled: true
   annotations:
