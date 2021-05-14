@@ -7,7 +7,7 @@ apiVersion: extensions/v1beta1
 {{- end }}
 kind: Ingress
 metadata:
-  name: {{ .Values.sha }}-{{ $fullName }}
+  name: {{ .Values.reference }}-{{ $fullName }}
   labels:
     {{- include "charts.labels" . | nindent 4 }}
   {{- with .Values.ingress.annotations }}
@@ -25,10 +25,10 @@ spec:
         paths:
           - path: /
             backend:
-              serviceName: st-{{ .Values.sha }}-{{ include "charts.name" . }}-rails
+              serviceName: st-{{ .Values.reference }}-{{ include "charts.name" . }}-rails
               servicePort: 3000
           - path: /packs
             backend:
-              serviceName: st-{{ .Values.sha }}-{{ include "charts.name" . }}-static
+              serviceName: st-{{ .Values.reference }}-{{ include "charts.name" . }}-static
               servicePort: 80
   {{- end }}

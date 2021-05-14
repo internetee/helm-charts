@@ -13,7 +13,7 @@ image:
 imagePullSecrets: regcred-eisbot
 nameOverride: "auction"
 fullnameOverride: "auction-st"
-sha: "o0o0o0o"
+reference: "o0o0o0o"
 env: "st"
 
 serviceAccount:

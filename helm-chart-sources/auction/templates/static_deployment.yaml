@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: st-{{ .Values.sha }}-{{ include "charts.name" . }}-static
+  name: st-{{ .Values.reference }}-{{ include "charts.name" . }}-static
   labels:
     {{- include "charts.labels" . | nindent 4 }}
     auction: static
@@ -23,7 +23,7 @@ spec:
       containers:
         - name: {{ .Chart.Name }}-static
           tty: true
-          image: "{{ .Values.image.repository }}:STATIC_RC-{{ .Values.sha | default .Chart.AppVersion }}"
+          image: "{{ .Values.image.repository }}:STATIC_{{ .Values.image.tag | default .Chart.AppVersion }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           ports:
             - name: http

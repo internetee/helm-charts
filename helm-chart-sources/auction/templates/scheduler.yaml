@@ -2,7 +2,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: st-{{ .Values.sha }}-{{ include "charts.name" . }}-scheduler
+  name: st-{{ .Values.reference }}-{{ include "charts.name" . }}-scheduler
   labels:
     {{- include "charts.labels" . | nindent 4 }}
     auction: scheduler
@@ -24,7 +24,7 @@ spec:
       containers:
         - name: {{ .Chart.Name }}-rails
           tty: true
-          image: "{{ .Values.image.repository }}:{{ .Values.sha | default .Chart.AppVersion }}"
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           env:
             - name: APP_DBHOST
