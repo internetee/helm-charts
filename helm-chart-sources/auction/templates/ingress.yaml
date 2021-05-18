@@ -17,10 +17,10 @@ metadata:
 spec:
   tls:
     - hosts:
-       - {{ .Values.host }}
+       - {{ .Values.nameOverride }}-{{ .Values.reference }}.{{ .Values.baseUrl }}
       secretName: {{ .Values.tls.secretName }}
   rules:
-    - host: {{ .Values.host }}
+    - host: {{ .Values.nameOverride }}-{{ .Values.reference }}.{{ .Values.baseUrl }}
       http:
         paths:
           - path: /
