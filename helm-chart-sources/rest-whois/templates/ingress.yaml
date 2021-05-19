@@ -8,7 +8,7 @@ apiVersion: extensions/v1beta1
 {{- end }}
 kind: Ingress
 metadata:
-  name: {{ $fullName }}
+  name: {{ .Values.reference }}-{{ $fullName }}
   labels:
     {{- include "charts.labels" . | nindent 4 }}
   {{- with .Values.ingress.annotations }}
@@ -16,26 +16,16 @@ metadata:
     {{- toYaml . | nindent 4 }}
   {{- end }}
 spec:
-  {{- if .Values.ingress.tls }}
   tls:
-    {{- range .Values.ingress.tls }}
     - hosts:
-        {{- range .hosts }}
-        - {{ . | quote }}
-        {{- end }}
-      secretName: {{ .secretName }}
-    {{- end }}
-  {{- end }}
+       - {{ .Values.nameOverride }}-{{ .Values.reference }}.{{ .Values.baseUrl }}
+      secretName: {{ .Values.secretName }}
   rules:
-    {{- range .Values.ingress.hosts }}
-    - host: {{ .host | quote }}
+    - host: {{ .Values.nameOverride }}-{{ .Values.reference }}.{{ .Values.baseUrl }}
       http:
         paths:
-          {{- range .paths }}
-          - path: {{ .path }}
+          - path: /
             backend:
-              serviceName: {{ $fullName }}
+              serviceName: st-{{ .Values.reference }}-{{ include "charts.name" . }}
               servicePort: {{ $svcPort }}
-          {{- end }}
-    {{- end }}
   {{- end }}

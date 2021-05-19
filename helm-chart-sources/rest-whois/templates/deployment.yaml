@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ include "charts.fullname" . }}
+  name: {{ .Values.status }}-{{ .Values.reference }}-{{ include "charts.name" . }}
   labels:
     {{- include "charts.labels" . | nindent 4 }}
     app: rwhois

@@ -13,7 +13,9 @@ image:
 imagePullSecrets: regcred-eisbot
 nameOverride: "rwhois"
 fullnameOverride: "rwhois-st"
-status: staging
+status: st
+baseUrl: riigi.pilv.tld.ee
+reference: "0o0o0o0"
 
 serviceAccount:
   # Specifies whether a service account should be created
@@ -41,23 +43,10 @@ service:
   type: ClusterIP
   port: 3000
 
+secretName: st-rwhois-cert
+
 ingress:
   enabled: true
-  annotations: 
-      kubernetes.io/ingress.class: nginx
-      kubernetes.io/tls-acme: "true"
-      cert-manager.io/cluster-issuer: letsencrypt-staging
-  hosts:
-    - host: rp-st-rwhois.infra.tld.ee
-      paths:
-      - path: /
-        backend:
-          serviceName: rwhois-st
-          servicePort: 3000
-  tls: 
-   - secretName: st-rwhois-cert
-     hosts:
-       - rp-st-rwhois.infra.tld.ee
 
 resources:
   limits:
