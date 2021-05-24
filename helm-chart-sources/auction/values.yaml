@@ -56,8 +56,8 @@ ingress:
   enabled: true
   annotations:
       kubernetes.io/ingress.class: nginx
-      kubernetes.io/tls-acme: "true"
-      cert-manager.io/cluster-issuer: letsencrypt-staging
+      # kubernetes.io/tls-acme: "true"
+      # cert-manager.io/cluster-issuer: letsencrypt-staging
   hosts:
     - host: rp-st-auction.infra.tld.ee
       paths:
