@@ -14,7 +14,7 @@ imagePullSecrets: regcred-eisbot
 nameOverride: "rwhois"
 fullnameOverride: "rwhois-st"
 status: st
-baseUrl: riigi.pilv.tld.ee
+baseUrl: pilv.tld.ee
 reference: "0o0o0o0"
 
 serviceAccount:

@@ -15,7 +15,7 @@ nameOverride: "auction"
 fullnameOverride: "auction-st"
 reference: "o0o0o0o"
 env: "st"
-baseUrl: riigi.pilv.tld.ee
+baseUrl: pilv.tld.ee
 
 serviceAccount:
   # Specifies whether a service account should be created
