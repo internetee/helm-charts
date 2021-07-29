@@ -1,0 +1,59 @@
+{{- if .Values.epp.enabled -}}
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Values.status }}-{{ .Values.reference }}-{{ include "registry.name" . }}-epp
+  labels:
+    {{- include "registry.labels" . | nindent 4 }}
+    registry: epp
+spec:
+  selector:
+    matchLabels:
+      {{- include "registry.selectorLabels" . | nindent 6 }}
+      registry: epp
+  template:
+    metadata:
+      {{- with .Values.podAnnotations }}
+      annotations:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      labels:
+        {{- include "registry.selectorLabels" . | nindent 8 }}
+        registry: epp
+    spec:
+      imagePullSecrets:
+        - name: {{ .Values.imagePullSecrets }}
+      containers:
+        - name: {{ .Chart.Name }}-epp
+          tty: true
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          env:
+            - name: RAILS_ENV
+              value: staging
+            - name: APP_DBHOST
+              value: whois-test-db-postgresql.whois-testing.svc.cluster.local
+          ports:
+            - name: http
+              containerPort: 3000
+              protocol: TCP
+          readinessProbe:
+            tcpSocket:
+              port: 3000
+            initialDelaySeconds: 10
+            periodSeconds: 10
+          resources:
+            {{- toYaml .Values.resources | nindent 12 }}
+          command:
+            - bash
+            - -c
+            - "bundle exec rails server --pid tmp/pids/epp.pid -b 0.0.0.0"
+          volumeMounts:
+          - name: application-conf
+            mountPath: "/opt/webapps/app/config/application.yml"
+            subPath: "application.yml"
+      volumes:
+        - name: application-conf
+          configMap:
+            name: st-registry-application-config
+{{- end }}
