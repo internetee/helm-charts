@@ -15,6 +15,7 @@ nameOverride: "accreditation"
 fullnameOverride: "accreditation-st"
 status: st
 baseUrl: pilv.tld.ee
+reference: "o0o0o0o"
 
 serviceAccount:
   # Specifies whether a service account should be created

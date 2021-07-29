@@ -38,6 +38,7 @@ spec:
                   name: st-redis-url
                   key: REDIS_URL
             - name: APP_DBHOST
+              valueFrom:
                 secretKeyRef:
                   name: st-db-host
                   key: DB_HOST
