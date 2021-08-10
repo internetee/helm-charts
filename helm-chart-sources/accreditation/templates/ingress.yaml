@@ -28,6 +28,10 @@ spec:
         paths:
           - path: /
             backend:
-              serviceName: st-{{ .Values.reference }}-{{ include "accreditation-center.name" . }}
+              serviceName: st-{{ .Values.reference }}-{{ include "accreditation-center.name" . }}-rails
               servicePort: {{ $svcPort }}
+          - path: /packs
+            backend:
+              serviceName: st-{{ .Values.reference }}-{{ include "accreditation-center.name" . }}-static
+              servicePort: 80
 {{- end }}

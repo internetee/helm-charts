@@ -1,13 +1,15 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: st-{{ .Values.reference }}-{{ include "accreditation-center.name" . }}
+  name: st-{{ .Values.reference }}-{{ include "accreditation-center.name" . }}-rails
   labels:
     {{- include "accreditation-center.labels" . | nindent 4 }}
+    accreditation: rails
 spec:
   selector:
     matchLabels:
       {{- include "accreditation-center.selectorLabels" . | nindent 6 }}
+      accreditation: rails
   template:
     metadata:
       {{- with .Values.podAnnotations }}
@@ -16,6 +18,7 @@ spec:
       {{- end }}
       labels:
         {{- include "accreditation-center.selectorLabels" . | nindent 8 }}
+        accreditation: rails
     spec:
       containers:
         - name: {{ .Chart.Name }}
