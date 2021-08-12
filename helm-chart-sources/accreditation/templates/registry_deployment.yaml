@@ -1,0 +1,74 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: st-{{ .Values.reference }}-{{ include "accreditation-center.name" . }}-registry
+  labels:
+    {{- include "accreditation-center.labels" . | nindent 4 }}
+    accreditation: registry
+spec:
+  selector:
+    matchLabels:
+      {{- include "accreditation-center.selectorLabels" . | nindent 6 }}
+      accreditation: registry
+  template:
+    metadata:
+      {{- with .Values.podAnnotations }}
+      annotations:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      labels:
+        {{- include "accreditation-center.selectorLabels" . | nindent 8 }}
+        accreditation: registry
+    spec:
+      containers:
+        - name: {{ .Chart.Name }}
+          tty: true
+          securityContext:
+            {{- toYaml .Values.securityContext | nindent 12 }}
+          image: "{{ .Values.image.repository }}:REGISTRY_{{ .Values.image.tag | default .Chart.AppVersion }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          env:
+            - name: RAILS_ENV
+              value: staging
+            - name: SECRET_KEY_BASE
+              value: 'tr463rtrweiu93t2tui2ut0995'
+            - name: REDIS_URL
+              valueFrom:
+                secretKeyRef:
+                  name: st-redis-url
+                  key: REDIS_URL
+              # valueFrom:
+              #   secretKeyRef:
+              #     name: st-accreditation-key-base
+              #     key: SECRET_KEY_BASE
+          ports:
+            - name: http
+              containerPort: 3000
+              protocol: TCP
+          readinessProbe:
+            tcpSocket:
+              port: 3000
+            initialDelaySeconds: 20
+            periodSeconds: 10
+          resources:
+            {{- toYaml .Values.resources | nindent 12 }}
+          command:
+            - bash
+            - -c 
+            - "bundle exec rails server -b 0.0.0.0"
+          volumeMounts:
+          - name: database-config
+            mountPath: "/opt/webapps/app/config/database.yml"
+            subPath: "database.yml"
+          - name: application-conf
+            mountPath: "/opt/webapps/app/config/application.yml"
+            subPath: "application.yml"
+      imagePullSecrets:
+       - name: {{ .Values.imagePullSecrets }}
+      volumes:
+        - name: database-config
+          configMap: 
+            name: st-accreditation-registry-db-config
+        - name: application-conf
+          configMap:
+            name: st-accreditation-registry-application-config
