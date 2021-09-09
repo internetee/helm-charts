@@ -37,11 +37,6 @@ spec:
                 secretKeyRef:
                   name: redis-url
                   key: REDIS_URL
-            - name: APP_DBHOST
-              valueFrom:
-                secretKeyRef:
-                  name: db-host
-                  key: DB_HOST
             - name: SECRET_KEY_BASE
               valueFrom:
                 secretKeyRef:
