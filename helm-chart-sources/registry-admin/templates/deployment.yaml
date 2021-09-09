@@ -1,0 +1,79 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Values.status }}-{{ .Values.reference }}-{{ include "registry_admin.name" . }}
+  labels:
+    {{- include "registry_admin.labels" . | nindent 4 }}
+spec:
+  selector:
+    matchLabels:
+      {{- include "registry_admin.selectorLabels" . | nindent 6 }}
+  template:
+    metadata:
+      {{- with .Values.podAnnotations }}
+      annotations:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      labels:
+        {{- include "registry_admin.selectorLabels" . | nindent 8 }}
+    spec:
+      imagePullSecrets:
+        - name: {{ .Values.imagePullSecrets }}
+      serviceAccountName: {{ include "registry_admin.serviceAccountName" . }}
+      securityContext:
+        {{- toYaml .Values.podSecurityContext | nindent 8 }}
+      containers:
+        - name: {{ .Chart.Name }}
+          tty: true
+          securityContext:
+            {{- toYaml .Values.securityContext | nindent 12 }}
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          env:
+            - name: RAILS_ENV
+              value: {{ .Values.environment }}
+            - name: REDIS_URL
+              valueFrom:
+                secretKeyRef:
+                  name: redis-url
+                  key: REDIS_URL
+            - name: SECRET_KEY_BASE
+              valueFrom:
+                secretKeyRef:
+                  name: reg-admin-key-base
+                  key: SECRET_KEY_BASE
+          ports:
+            - name: http
+              containerPort: 3000
+              protocol: TCP
+          readinessProbe:
+            tcpSocket:
+              port: 3000
+            initialDelaySeconds: 10
+            periodSeconds: 10
+          resources:
+            {{- toYaml .Values.resources | nindent 12 }}
+          command:
+            - bash
+            - -c
+            - "bundle exec rails server -b 0.0.0.0"
+          volumeMounts:
+          - name: application-conf
+            mountPath: "/opt/webapps/app/config/application.yml"
+            subPath: "application.yml"
+          - name: database-config
+            mountPath: "/opt/webapps/app/config/database.yml"
+            subPath: "database.yml"
+          - name: cert-container
+            mountPath: "/opt/ca/crl/crl.pem"
+            subPath: "crl.pem"
+      volumes:
+        - name: application-conf
+          configMap:
+            name: {{ .Values.configmap.application }}
+        - name: database-config
+          configMap:
+            name: {{ .Values.configmap.database }}
+        - name: cert-container
+          secret:
+            secretName: {{ .Values.secret.cert_container }}
