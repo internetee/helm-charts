@@ -20,9 +20,9 @@ metadata:
 spec:
   tls:
     - hosts:
-       - {{ .Values.nameOverride }}-{{ .Values.reference }}.{{ .Values.baseUrl }}
+       - r{{ .Values.nameOverride }}-{{ .Values.reference }}.{{ .Values.baseUrl }}
   rules:
-    - host: {{ .Values.nameOverride }}-{{ .Values.reference }}.{{ .Values.baseUrl }}
+    - host: r{{ .Values.nameOverride }}-{{ .Values.reference }}.{{ .Values.baseUrl }}
       http:
         paths:
           - pathType: Prefix
