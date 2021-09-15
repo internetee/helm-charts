@@ -11,8 +11,8 @@ image:
   tag: ""
 
 imagePullSecrets: regcred-eisbot
-nameOverride: "reg-admin"
-fullnameOverride: "reg-adm-st"
+nameOverride: "epp"
+fullnameOverride: "epp-st"
 status: "st"
 baseUrl: pilv.tld.ee
 reference: "eis"
@@ -33,12 +33,6 @@ podSecurityContext: {}
   # fsGroup: 2000
 
 securityContext: {}
-  # capabilities:
-  #   drop:
-  #   - ALL
-  # readOnlyRootFilesystem: true
-  # runAsNonRoot: true
-  # runAsUser: 1000
 
 service:
   type: ClusterIP
@@ -46,20 +40,32 @@ service:
   rails:
     port: 3000
 
-secretName: reg-admin-cert
+secretName: epp-cert
 
 ingress:
   enabled: true
-  annotations: {}
+  annotations:
+    # Enable client certificate authentication
+    nginx.ingress.kubernetes.io/auth-tls-verify-client: "on"
+    # Create the secret containing the trusted ca certificates
+    nginx.ingress.kubernetes.io/auth-tls-secret: "epp/ca-secret"
+    # Specify the verification depth in the client certificates chain
+    nginx.ingress.kubernetes.io/auth-tls-verify-depth: "1"
+    # Specify if certificates are passed to upstream server
+    nginx.ingress.kubernetes.io/auth-tls-pass-certificate-to-upstream: "true"
 
 configmap:
-  database: reg-admin-database-config
-  application: reg-admin-application-config
+  database: epp-database-config
+  application: epp-application-config
 
 secret:
-  cert_container: reg-admin-crl
+  cert_container: epp-crl
 
 resources: {}
+  # We usually recommend not to specify default resources and to leave this as a conscious
+  # choice for the user. This also increases chances charts run on environments with little
+  # resources, such as Minikube. If you do want to specify resources, uncomment the following
+  # lines, adjust them as necessary, and remove the curly braces after 'resources:'.
   # limits:
   #   cpu: 100m
   #   memory: 128Mi
