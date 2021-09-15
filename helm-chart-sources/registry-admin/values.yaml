@@ -50,6 +50,7 @@ secretName: reg-admin-cert
 
 ingress:
   enabled: true
+  annotations: {}
 
 configmap:
   database: reg-admin-database-config
