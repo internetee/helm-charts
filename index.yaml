@@ -3,9 +3,9 @@ entries:
   accreditation:
   - apiVersion: v2
     appVersion: 1.16.0
-    created: "2021-09-09T13:43:42.057141305+03:00"
+    created: "2021-09-15T15:42:47.651508801+03:00"
     description: A Helm chart for Kubernetes
-    digest: be936562930ff9c85dc44ce84b19be8ab42fedd286f56d73fb1d993523156867
+    digest: f27a72771186e1918f85272394067ec22e9d476d4cb9a1c43ba09983a54f3bbb
     name: accreditation
     type: application
     urls:
@@ -13,7 +13,7 @@ entries:
     version: 0.3.0
   - apiVersion: v2
     appVersion: 1.16.0
-    created: "2021-09-09T13:43:42.056116846+03:00"
+    created: "2021-09-15T15:42:47.650968768+03:00"
     description: A Helm chart for Kubernetes
     digest: 3a5acad71c41a9f8b67dae9103677bf70647263e926e305233acd06a07ce42dc
     name: accreditation
@@ -23,7 +23,7 @@ entries:
     version: 0.2.0
   - apiVersion: v2
     appVersion: 1.16.0
-    created: "2021-09-09T13:43:42.055086703+03:00"
+    created: "2021-09-15T15:42:47.650295398+03:00"
     description: A Helm chart for Kubernetes
     digest: 174f0e3fd3d6feb236343f1e038bb565047c554b997a602540c425b0dc78cd12
     name: accreditation
@@ -34,9 +34,9 @@ entries:
   auction:
   - apiVersion: v2
     appVersion: 1.16.0
-    created: "2021-09-09T13:43:42.058304901+03:00"
+    created: "2021-09-15T15:42:47.6521066+03:00"
     description: A Helm chart for Auction centre
-    digest: 3c90e3cd504689a593fb1392fe1b9a6845b59598a4d108396dfea5af940178e1
+    digest: 1d79a9743b0a19403ec9a05bde530d29cb078cf3c79c74af132689e7cf746e74
     name: auction
     type: application
     urls:
@@ -45,9 +45,9 @@ entries:
   registry:
   - apiVersion: v2
     appVersion: 1.16.0
-    created: "2021-09-09T13:43:42.060212628+03:00"
+    created: "2021-09-15T15:42:47.65317543+03:00"
     description: A Helm chart for Kubernetes
-    digest: 9ece7d00761f35a1d39594369892f13588531f7a02d79fec72020f60e6da1976
+    digest: e7a14ac2624a81f8c57ba1000ed408563f3337ca18c461fdbc3d2ec97464cf7e
     name: registry
     type: application
     urls:
@@ -55,7 +55,7 @@ entries:
     version: 0.1.1
   - apiVersion: v2
     appVersion: 1.16.0
-    created: "2021-09-09T13:43:42.059271337+03:00"
+    created: "2021-09-15T15:42:47.652654393+03:00"
     description: A Helm chart for Kubernetes
     digest: 2f803a408f4007d4489f25da8a39bd0029ee5ee61b9d0214b50a0da763c17617
     name: registry
@@ -66,21 +66,33 @@ entries:
   registry-admin:
   - apiVersion: v2
     appVersion: 1.16.0
-    created: "2021-09-09T13:43:42.060978494+03:00"
+    created: "2021-09-15T15:42:47.653715537+03:00"
     description: A Helm chart for Kubernetes
-    digest: 9b4dbc401eff4ad00246d6f470c35e5e0fb6ef9913180af2eb461a4290aa81d0
+    digest: f0b195632874c85d9f37852fa570f384fecb19175b9c988657d3dd29ee9f72d9
     icon: https://www.internet.ee/images/favicon-32x32.png
     name: registry-admin
     type: application
     urls:
     - https://internetee.github.io/helm-charts/registry-admin-0.1.0.tgz
     version: 0.1.0
+  registry-epp:
+  - apiVersion: v2
+    appVersion: 1.16.0
+    created: "2021-09-15T15:42:47.654246777+03:00"
+    description: A Helm chart for Kubernetes
+    digest: 9debe2e55a86e8ab8e8f7c9f8ec9bb85a6457b6eb99d34afc15b6a550e7714b5
+    icon: https://www.internet.ee/images/favicon-32x32.png
+    name: registry-epp
+    type: application
+    urls:
+    - https://internetee.github.io/helm-charts/registry-epp-0.1.0.tgz
+    version: 0.1.0
   rest-whois:
   - apiVersion: v2
     appVersion: 1.16.0
-    created: "2021-09-09T13:43:42.06206292+03:00"
+    created: "2021-09-15T15:42:47.654744913+03:00"
     description: A Helm chart rest whois
-    digest: 65cea93fbff80e26ca0970c53c284af49221259f3edbf6e310d4be899a02adfe
+    digest: 0ed1e89fa572eb8e60843b7f221136be4ef8d1cf11b798ff4732a179df1fd000
     name: rest-whois
     type: application
     urls:
@@ -88,12 +100,12 @@ entries:
     version: 0.1.0
   whois:
   - apiVersion: v2
-    created: "2021-09-09T13:43:42.063158353+03:00"
+    created: "2021-09-15T15:42:47.655167764+03:00"
     description: A Helm chart for Whois service
-    digest: 1de4e482ecc3d506cef13fbd89194cabc27f3bf4b0026c9e13911ac92d7694e3
+    digest: 44a922f2b0190f8b162563580055aa2271b23255c85a194fd612437ee1f1783d
     name: whois
     type: application
     urls:
     - https://internetee.github.io/helm-charts/whois-0.1.0.tgz
     version: 0.1.0
-generated: "2021-09-09T13:43:42.053684893+03:00"
+generated: "2021-09-15T15:42:47.64945737+03:00"
