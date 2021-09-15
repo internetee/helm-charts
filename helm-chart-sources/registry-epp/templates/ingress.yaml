@@ -25,8 +25,11 @@ spec:
     - host: {{ .Values.nameOverride }}-{{ .Values.reference }}.{{ .Values.baseUrl }}
       http:
         paths:
-          - path: /
+          - pathType: Prefix
+            path: /
             backend:
-              serviceName: st-{{ .Values.reference }}-{{ include "registry_epp.name" . }}
-              servicePort: {{ $svcPort }}
+              service:
+                name: st-{{ .Values.reference }}-{{ include "registry_epp.name" . }}
+                port: 
+                  number: {{ $svcPort }}
 {{- end }}
