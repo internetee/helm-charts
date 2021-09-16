@@ -1,10 +1,6 @@
 {{- if .Values.ingress.enabled -}}
 {{- $fullName := include "charts.fullname" . -}}
-{{- if semverCompare ">=1.14-0" .Capabilities.KubeVersion.GitVersion -}}
-apiVersion: networking.k8s.io/v1beta1
-{{- else -}}
-apiVersion: extensions/v1beta1
-{{- end }}
+apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: {{ .Values.reference }}-{{ $fullName }}
@@ -23,12 +19,18 @@ spec:
     - host: {{ .Values.nameOverride }}-{{ .Values.reference }}.{{ .Values.baseUrl }}
       http:
         paths:
-          - path: /
+          - pathType: Prefix
+            path: /
             backend:
-              serviceName: st-{{ .Values.reference }}-{{ include "charts.name" . }}-rails
-              servicePort: 3000
-          - path: /packs
+              service:
+                name: st-{{ .Values.reference }}-{{ include "charts.name" . }}-rails
+                port:
+                  number: 3000
+          - pathTye: Prefix 
+            path: /packs
             backend:
-              serviceName: st-{{ .Values.reference }}-{{ include "charts.name" . }}-static
-              servicePort: 80
+              service:
+                name: st-{{ .Values.reference }}-{{ include "charts.name" . }}-static
+                port:
+                  number: 80
   {{- end }}
