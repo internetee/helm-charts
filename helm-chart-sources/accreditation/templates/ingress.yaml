@@ -1,13 +1,7 @@
 {{- if .Values.ingress.enabled -}}
 {{- $fullName := include "accreditation-center.fullname" . -}}
 {{- $svcPort := .Values.service.port -}}
-{{- if semverCompare ">=1.19-0" .Capabilities.KubeVersion.GitVersion -}}
 apiVersion: networking.k8s.io/v1
-{{- else if semverCompare ">=1.14-0" .Capabilities.KubeVersion.GitVersion -}}
-apiVersion: networking.k8s.io/v1beta1
-{{- else -}}
-apiVersion: extensions/v1beta1
-{{- end }}
 kind: Ingress
 metadata:
   name: {{ .Values.reference }}-{{ $fullName }}
@@ -26,12 +20,18 @@ spec:
     - host: {{ .Values.nameOverride }}-{{ .Values.reference }}.{{ .Values.baseUrl }}
       http:
         paths:
-          - path: /
+          - pathType: Prefix
+            path: /
             backend:
-              serviceName: st-{{ .Values.reference }}-{{ include "accreditation-center.name" . }}-rails
-              servicePort: {{ $svcPort }}
-          - path: /packs
+              service:
+                name: st-{{ .Values.reference }}-{{ include "accreditation-center.name" . }}-rails
+                port:
+                  number: {{ $svcPort }}
+          - pathType: Prefix
+            path: /packs
             backend:
-              serviceName: st-{{ .Values.reference }}-{{ include "accreditation-center.name" . }}-static
-              servicePort: 80
+              service:
+                name: st-{{ .Values.reference }}-{{ include "accreditation-center.name" . }}-static
+                port:
+                  number: 80
 {{- end }}

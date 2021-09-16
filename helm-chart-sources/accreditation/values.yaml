@@ -49,6 +49,7 @@ tls:
 
 ingress:
   enabled: true
+  annonitations: {}
 
 resources:
   limits:
