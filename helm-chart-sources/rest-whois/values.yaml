@@ -47,6 +47,7 @@ secretName: st-rwhois-cert
 
 ingress:
   enabled: true
+  annotations: {}
 
 resources:
   limits:
