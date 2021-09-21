@@ -50,7 +50,9 @@ secretName: reg-admin-cert
 
 ingress:
   enabled: true
-  annotations: {}
+  annotations:
+    nginx.ingress.kubernetes.io/whitelist-source-range: 171.22.247.18/1
+    
 
 configmap:
   database: reg-admin-database-config
