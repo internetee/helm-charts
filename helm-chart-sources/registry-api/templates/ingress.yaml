@@ -1,5 +1,5 @@
 {{- if .Values.ingress.enabled -}}
-{{- $fullName := include "registry_admin.fullname" . -}}
+{{- $fullName := include "registry_api.fullname" . -}}
 {{- $svcPort := .Values.service.rails.port -}}
 {{- $uri := .Values.baseUrl -}}
 {{- if eq .Values.status "st" }}
@@ -16,7 +16,7 @@ kind: Ingress
 metadata:
   name: {{ .Values.reference }}-{{ $fullName }}
   labels:
-    {{- include "registry_admin.labels" . | nindent 4 }}
+    {{- include "registry_api.labels" . | nindent 4 }}
   {{- with .Values.ingress.annotations }}
   annotations:
     {{- toYaml . | nindent 4 }}
@@ -34,7 +34,7 @@ spec:
             path: /
             backend:
               service:
-                name: {{ .Values.status }}-{{ .Values.reference }}-{{ include "registry_admin.name" . }}
+                name: {{ .Values.status }}-{{ .Values.reference }}-{{ include "registry_api.name" . }}
                 port:
                   number: {{ $svcPort }}
 {{- end }}

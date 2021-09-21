@@ -46,7 +46,7 @@ service:
   rails:
     port: 3000
 
-secretName: reg-admin-cert
+secretName: reg-api-cert
 
 ingress:
   enabled: true
@@ -55,11 +55,11 @@ ingress:
     
 
 configmap:
-  database: reg-admin-database-config
-  application: reg-admin-application-config
+  database: reg-api-database-config
+  application: reg-api-application-config
 
 secret:
-  cert_container: reg-admin-crl
+  cert_container: reg-api-crl
 
 resources: {}
   # limits:

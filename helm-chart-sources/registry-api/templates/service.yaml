@@ -1,9 +1,9 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: {{ .Values.status }}-{{ .Values.reference }}-{{ include "registry_admin.name" . }}
+  name: {{ .Values.status }}-{{ .Values.reference }}-{{ include "registry_api.name" . }}
   labels:
-    {{- include "registry_admin.labels" . | nindent 4 }}
+    {{- include "registry_api.labels" . | nindent 4 }}
 spec:
   ports:
     - port: {{ .Values.service.rails.port }}
@@ -11,4 +11,4 @@ spec:
       protocol: TCP
       name: http
   selector:
-    {{- include "registry_admin.selectorLabels" . | nindent 4 }}
+    {{- include "registry_api.selectorLabels" . | nindent 4 }}

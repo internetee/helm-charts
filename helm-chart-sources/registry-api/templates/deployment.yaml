@@ -1,13 +1,13 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ .Values.status }}-{{ .Values.reference }}-{{ include "registry_admin.name" . }}
+  name: {{ .Values.status }}-{{ .Values.reference }}-{{ include "registry_api.name" . }}
   labels:
-    {{- include "registry_admin.labels" . | nindent 4 }}
+    {{- include "registry_api.labels" . | nindent 4 }}
 spec:
   selector:
     matchLabels:
-      {{- include "registry_admin.selectorLabels" . | nindent 6 }}
+      {{- include "registry_api.selectorLabels" . | nindent 6 }}
   template:
     metadata:
       {{- with .Values.podAnnotations }}
@@ -15,11 +15,11 @@ spec:
         {{- toYaml . | nindent 8 }}
       {{- end }}
       labels:
-        {{- include "registry_admin.selectorLabels" . | nindent 8 }}
+        {{- include "registry_api.selectorLabels" . | nindent 8 }}
     spec:
       imagePullSecrets:
         - name: {{ .Values.imagePullSecrets }}
-      serviceAccountName: {{ include "registry_admin.serviceAccountName" . }}
+      serviceAccountName: {{ include "registry_api.serviceAccountName" . }}
       securityContext:
         {{- toYaml .Values.podSecurityContext | nindent 8 }}
       containers:
@@ -40,7 +40,7 @@ spec:
             - name: SECRET_KEY_BASE
               valueFrom:
                 secretKeyRef:
-                  name: reg-admin-key-base
+                  name: reg-api-key-base
                   key: SECRET_KEY_BASE
           ports:
             - name: http
