@@ -31,7 +31,7 @@ spec:
       http:
         paths:
           - pathType: Prefix
-            path: /
+            path: /api
             backend:
               service:
                 name: {{ .Values.status }}-{{ .Values.reference }}-{{ include "registry_api.name" . }}
