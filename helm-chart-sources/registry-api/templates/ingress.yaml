@@ -1,0 +1,40 @@
+{{- if .Values.ingress.enabled -}}
+{{- $fullName := include "registry_api.fullname" . -}}
+{{- $svcPort := .Values.service.rails.port -}}
+{{- $uri := .Values.baseUrl -}}
+{{- if eq .Values.status "st" }}
+{{- $uri = include "staging.url" . -}}
+{{- end }}
+{{- if semverCompare ">=1.19-0" .Capabilities.KubeVersion.GitVersion -}}
+apiVersion: networking.k8s.io/v1
+{{- else if semverCompare ">=1.14-0" .Capabilities.KubeVersion.GitVersion -}}
+apiVersion: networking.k8s.io/v1beta1
+{{- else -}}
+apiVersion: extensions/v1beta1
+{{- end }}
+kind: Ingress
+metadata:
+  name: {{ .Values.reference }}-{{ $fullName }}
+  labels:
+    {{- include "registry_api.labels" . | nindent 4 }}
+  {{- with .Values.ingress.annotations }}
+  annotations:
+    {{- toYaml . | nindent 4 }}
+  {{- end }}
+spec:
+  tls:
+    - hosts:
+       - {{ $uri }}
+      secretName: {{ .Values.secretName }}
+  rules:
+    - host: {{ $uri }}
+      http:
+        paths:
+          - pathType: Prefix
+            path: /api
+            backend:
+              service:
+                name: {{ .Values.status }}-{{ .Values.reference }}-{{ include "registry_api.name" . }}
+                port:
+                  number: {{ $svcPort }}
+{{- end }}

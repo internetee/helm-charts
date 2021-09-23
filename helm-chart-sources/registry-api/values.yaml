@@ -1,0 +1,83 @@
+# Default values for registry.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+replicaCount: 1
+
+image:
+  repository: ghcr.io/internetee/registry
+  pullPolicy: IfNotPresent
+  # Overrides the image tag whose default is the chart appVersion.
+  tag: ""
+
+imagePullSecrets: regcred-eisbot
+nameOverride: "reg-api"
+fullnameOverride: "reg-api-st"
+status: "st"
+baseUrl: pilv.tld.ee
+reference: "eis"
+environment: "staging"
+
+serviceAccount:
+  # Specifies whether a service account should be created
+  create: true
+  # Annotations to add to the service account
+  annotations: {}
+  # The name of the service account to use.
+  # If not set and create is true, a name is generated using the fullname template
+  name: ""
+
+podAnnotations: {}
+
+podSecurityContext: {}
+  # fsGroup: 2000
+
+securityContext: {}
+  # capabilities:
+  #   drop:
+  #   - ALL
+  # readOnlyRootFilesystem: true
+  # runAsNonRoot: true
+  # runAsUser: 1000
+
+service:
+  type: ClusterIP
+  port: 80
+  rails:
+    port: 3000
+
+secretName: reg-api-cert
+
+ingress:
+  enabled: true
+  annotations:
+    nginx.ingress.kubernetes.io/whitelist-source-range: 171.22.247.18/24
+    
+
+configmap:
+  database: reg-api-database-config
+  application: reg-api-application-config
+
+secret:
+  cert_container: reg-api-crl
+
+resources: {}
+  # limits:
+  #   cpu: 100m
+  #   memory: 128Mi
+  # requests:
+  #   cpu: 100m
+  #   memory: 128Mi
+
+autoscaling:
+  enabled: false
+  minReplicas: 1
+  maxReplicas: 100
+  targetCPUUtilizationPercentage: 80
+  # targetMemoryUtilizationPercentage: 80
+
+nodeSelector: {}
+
+tolerations: []
+
+affinity: {}
