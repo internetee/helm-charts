@@ -40,6 +40,10 @@ service:
   rails:
     port: 3000
 
+proxy:
+  port: 700
+  # helm upgrade --install repp-2116 --set image.tag="RC-8bebe42",reference=2116,proxy.port=116 registry-epp -n epp
+
 secretName: epp-cert
 
 ingress:
@@ -60,6 +64,8 @@ configmap:
 
 secret:
   cert_container: epp-crl
+  ca_combo: ca-combo
+  server_crt: server-cert
 
 resources: {}
   # We usually recommend not to specify default resources and to leave this as a conscious

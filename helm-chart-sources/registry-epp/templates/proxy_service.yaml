@@ -4,11 +4,13 @@ metadata:
   name: proxy-{{ .Values.reference }}-{{ include "registry_epp.name" . }}
   labels:
     {{- include "registry_epp.labels" . | nindent 4 }}
+    epp: proxy
 spec:
   ports:
-    - port: {{ .Values.service.rails.port }}
+    - port: {{ .Values.proxy.port }}
       targetPort: http
       protocol: TCP
       name: http
   selector:
     {{- include "registry_epp.selectorLabels" . | nindent 4 }}
+    epp: proxy

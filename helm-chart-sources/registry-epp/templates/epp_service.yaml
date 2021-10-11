@@ -4,6 +4,7 @@ metadata:
   name: st-{{ .Values.reference }}-{{ include "registry_epp.name" . }}
   labels:
     {{- include "registry_epp.labels" . | nindent 4 }}
+    epp: epp
 spec:
   ports:
     - port: {{ .Values.service.rails.port }}
@@ -12,3 +13,4 @@ spec:
       name: http
   selector:
     {{- include "registry_epp.selectorLabels" . | nindent 4 }}
+    epp: epp
