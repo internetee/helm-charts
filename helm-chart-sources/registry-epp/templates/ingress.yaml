@@ -1,6 +1,6 @@
 {{- if .Values.ingress.enabled -}}
 {{- $fullName := include "registry_epp.fullname" . -}}
-{{- $svcPort := .Values.service.rails.port -}}
+{{- $svcPort := .Values.service.port -}}
 {{- if semverCompare ">=1.19-0" .Capabilities.KubeVersion.GitVersion -}}
 apiVersion: networking.k8s.io/v1
 {{- else if semverCompare ">=1.14-0" .Capabilities.KubeVersion.GitVersion -}}
@@ -20,7 +20,8 @@ metadata:
 spec:
   tls:
     - hosts:
-       - r{{ .Values.nameOverride }}-{{ .Values.reference }}.{{ .Values.baseUrl }}
+        - r{{ .Values.nameOverride }}-{{ .Values.reference }}.{{ .Values.baseUrl }}
+      secretName: {{ .Values.ingress.tls.secretName }}
   rules:
     - host: r{{ .Values.nameOverride }}-{{ .Values.reference }}.{{ .Values.baseUrl }}
       http:

@@ -7,8 +7,8 @@ metadata:
     epp: epp
 spec:
   ports:
-    - port: {{ .Values.service.rails.port }}
-      targetPort: http
+    - port: {{ .Values.service.port }}
+      targetPort: {{ .Values.service.rails.port }}
       protocol: TCP
       name: http
   selector:

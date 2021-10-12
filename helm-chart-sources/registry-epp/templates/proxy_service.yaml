@@ -7,10 +7,9 @@ metadata:
     epp: proxy
 spec:
   ports:
-    - port: {{ .Values.proxy.port }}
-      targetPort: http
+    - port: {{ .Values.service.epp.port }}
       protocol: TCP
-      name: http
+      name: epp
   selector:
     {{- include "registry_epp.selectorLabels" . | nindent 4 }}
     epp: proxy

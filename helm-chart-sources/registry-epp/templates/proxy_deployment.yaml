@@ -58,18 +58,18 @@ spec:
             - "./epp_proxy start && sleep 10 && tail -f release/log/erlang.log.1"
           volumeMounts:
           - name: ca-combo
-            mountPath: "/opt/shared/ca/certs/ca.crt.pem"
-            subPath: "ca.crt.pem"
-          - name: server-crt 
-            mountPath: "/opt/shared/ca/certs/cert.pem"
-            subPath: "cert.pem"
-          - name: server-crt 
-            mountPath: "/opt/shared/ca/certs/key.pem"
-            subPath: "key.pem"
+            mountPath: "/opt/shared/ca/certs/ca.crt"
+            subPath: ca.crt
+          - name: server-tls
+            mountPath: "/opt/shared/ca/certs/tls.crt"
+            subPath: tls.crt
+          - name: server-tls
+            mountPath: "/opt/shared/ca/certs/tls.key"
+            subPath: tls.key
       volumes:
         - name: ca-combo
           secret:
             secretName: {{ .Values.secret.ca_combo }}
-        - name: server-crt
+        - name: server-tls
           secret:
-            secretName: {{ .Values.secret.server_crt }}
+            secretName: {{ .Values.ingress.tls.secretName }}
