@@ -33,8 +33,8 @@ spec:
           image: "{{ .Values.image.repository }}:PROXY-{{ .Values.image.tag }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           ports:
-            - name: http
-              containerPort: {{ .Values.proxy.port }}
+            - name: epp
+              containerPort: {{ .Values.service.epp.port }}
               protocol: TCP
           # livenessProbe:
           #   initialDelaySeconds: 30
