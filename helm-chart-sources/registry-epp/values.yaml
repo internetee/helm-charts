@@ -5,17 +5,23 @@
 replicaCount: 1
 
 image:
+  # docker images repository address
   repository: ghcr.io/internetee/registry
   pullPolicy: IfNotPresent
   # Overrides the image tag whose default is the chart appVersion.
   tag: ""
 
+# Image pulling secrets
 imagePullSecrets: regcred-eisbot
 nameOverride: "epp"
 fullnameOverride: "epp-st"
+# Deployment status
 status: "st"
+# So to say domain used for staging
 baseUrl: pilv.tld.ee
-reference: "eis"
+# PullRequest reference number
+reference: 000
+# Rails environment name
 environment: "staging"
 
 serviceAccount:
@@ -35,15 +41,27 @@ podSecurityContext: {}
 securityContext: {}
 
 service:
+  # Service type
   type: ClusterIP
+  # http port number
   port: 80
   rails:
+    # Rails default port
     port: 3000
+  epp:
+    # EPP default port
+    port: 700
 
 secretName: epp-cert
 
 ingress:
+  # TLS cert and key
+  tls:
+    # Name of the secret containing servers TLS cert and key
+    secretName: st-epp-cert
+  # Enable or disable ingress for deployment
   enabled: true
+  # Extra annotations for Nginx
   annotations:
     # Enable client certificate authentication
     nginx.ingress.kubernetes.io/auth-tls-verify-client: "on"
@@ -54,11 +72,16 @@ ingress:
     # Specify if certificates are passed to upstream server
     nginx.ingress.kubernetes.io/auth-tls-pass-certificate-to-upstream: "true"
 
+# Configurational data
 configmap:
+  # Rails database connection config data
   database: epp-database-config
+  # Rails applications config data
   application: epp-application-config
 
 secret:
+  # CA for proxy to verify clients cert, same as for REPP
+  ca_combo: ca-secret
   cert_container: epp-crl
 
 resources: {}

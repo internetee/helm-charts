@@ -1,14 +1,15 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: st-{{ .Values.reference }}-{{ include "registry_epp.name" . }}
+  name: proxy-{{ .Values.reference }}-{{ include "registry_epp.name" . }}
   labels:
     {{- include "registry_epp.labels" . | nindent 4 }}
+    epp: proxy
 spec:
   ports:
-    - port: {{ .Values.service.rails.port }}
-      targetPort: http
+    - port: {{ .Values.service.epp.port }}
       protocol: TCP
-      name: http
+      name: epp
   selector:
     {{- include "registry_epp.selectorLabels" . | nindent 4 }}
+    epp: proxy

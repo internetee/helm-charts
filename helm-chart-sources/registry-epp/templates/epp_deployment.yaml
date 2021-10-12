@@ -4,10 +4,12 @@ metadata:
   name: {{ .Values.status }}-{{ .Values.reference }}-{{ include "registry_epp.name" . }}
   labels:
     {{- include "registry_epp.labels" . | nindent 4 }}
+    epp: epp
 spec:
   selector:
     matchLabels:
       {{- include "registry_epp.selectorLabels" . | nindent 6 }}
+      epp: epp
   template:
     metadata:
       {{- with .Values.podAnnotations }}
@@ -16,6 +18,7 @@ spec:
       {{- end }}
       labels:
         {{- include "registry_epp.selectorLabels" . | nindent 8 }}
+        epp: epp
     spec:
       imagePullSecrets:
         - name: {{ .Values.imagePullSecrets }}
@@ -51,6 +54,7 @@ spec:
           command:
             - bash
             - -c
+            #- "tail -f /dev/null"
             - "bundle exec rails server -b 0.0.0.0"
           volumeMounts:
           - name: application-conf

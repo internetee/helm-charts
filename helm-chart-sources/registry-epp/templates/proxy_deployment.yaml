@@ -1,0 +1,75 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: proxy-{{ .Values.reference }}-{{ include "registry_epp.name" . }}
+  labels:
+    {{- include "registry_epp.labels" . | nindent 4 }}
+    epp: proxy
+spec:
+  selector:
+    matchLabels:
+      {{- include "registry_epp.selectorLabels" . | nindent 6 }}
+      epp: proxy
+  template:
+    metadata:
+      {{- with .Values.podAnnotations }}
+      annotations:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      labels:
+        {{- include "registry_epp.selectorLabels" . | nindent 8 }}
+        epp: proxy
+    spec:
+      imagePullSecrets:
+        - name: {{ .Values.imagePullSecrets }}
+      serviceAccountName: {{ include "registry_epp.serviceAccountName" . }}
+      securityContext:
+        {{- toYaml .Values.podSecurityContext | nindent 8 }}
+      containers:
+        - name: {{ .Chart.Name }}
+          tty: true
+          securityContext:
+            {{- toYaml .Values.securityContext | nindent 12 }}
+          image: "{{ .Values.image.repository }}:PROXY-{{ .Values.image.tag }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          ports:
+            - name: epp
+              containerPort: {{ .Values.service.epp.port }}
+              protocol: TCP
+          # livenessProbe:
+          #   initialDelaySeconds: 30
+          #   exec:
+          #     command:
+          #       - bash
+          #       - -c
+          #       - ./epp_proxy ping
+          # readinessProbe:
+          #   tcpSocket:
+          #     port: 116
+          #   initialDelaySeconds: 10
+          #   periodSeconds: 10
+          resources:
+            {{- toYaml .Values.resources | nindent 12 }}
+          command:
+            - bash
+            - -c
+            #- "tail -f /dev/null"
+            #- "./epp_proxy start"
+            - "./epp_proxy start && sleep 10 && tail -f release/log/erlang.log.1"
+          volumeMounts:
+          - name: ca-combo
+            mountPath: "/opt/shared/ca/certs/ca.crt"
+            subPath: ca.crt
+          - name: server-tls
+            mountPath: "/opt/shared/ca/certs/tls.crt"
+            subPath: tls.crt
+          - name: server-tls
+            mountPath: "/opt/shared/ca/certs/tls.key"
+            subPath: tls.key
+      volumes:
+        - name: ca-combo
+          secret:
+            secretName: {{ .Values.secret.ca_combo }}
+        - name: server-tls
+          secret:
+            secretName: {{ .Values.ingress.tls.secretName }}
