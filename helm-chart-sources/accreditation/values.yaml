@@ -51,6 +51,10 @@ ingress:
   enabled: true
   annonitations: {}
 
+bot:
+  # certs for bot to create repp queries.
+  certificates: bot-certs
+
 resources:
   limits:
     cpu: 200m

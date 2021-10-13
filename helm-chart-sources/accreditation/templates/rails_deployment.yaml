@@ -35,11 +35,15 @@ spec:
             - name: RAILS_ENV
               value: staging
             - name: SECRET_KEY_BASE
-              value: 'tr463rtrweiu93t2tui2ut0995'
-              # valueFrom:
-              #   secretKeyRef:
-              #     name: st-accreditation-key-base
-              #     key: SECRET_KEY_BASE
+              valueFrom:
+                secretKeyRef:
+                  name: accreditation-key-base
+                  key: SECRET_KEY_BASE
+            - name: CLIENT_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: bot-pswd
+                  key: password
           ports:
             - name: http
               containerPort: 3000
@@ -59,9 +63,18 @@ spec:
           - name: database-config
             mountPath: "/opt/webapps/app/config/database.yml"
             subPath: "database.yml"
+          - name: bot-certs
+            mountPath: "/opt/ca/certs/accr_bot.crt.pem"
+            subPath: accr_bot.crt.pem
+          - name: bot-certs
+            mountPath: "/opt/ca/private/client.key"
+            subPath: client.key
       imagePullSecrets:
        - name: {{ .Values.imagePullSecrets }}
       volumes:
         - name: database-config
           configMap: 
             name: st-accreditation-db-config
+        - name: bot-certs
+          secret:
+            secretName: {{ .Values.bot.certificates }}
