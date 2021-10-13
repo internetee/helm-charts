@@ -35,11 +35,10 @@ spec:
             - name: RAILS_ENV
               value: staging
             - name: SECRET_KEY_BASE
-              value: 'tr463rtrweiu93t2tui2ut0995'
-              # valueFrom:
-              #   secretKeyRef:
-              #     name: st-accreditation-key-base
-              #     key: SECRET_KEY_BASE
+              valueFrom:
+                secretKeyRef:
+                  name: accreditation-key-base
+                  key: SECRET_KEY_BASE
           ports:
             - name: http
               containerPort: 3000
