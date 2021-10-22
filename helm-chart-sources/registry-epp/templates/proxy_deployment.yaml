@@ -1,3 +1,4 @@
+{{- if .Values.epp.proxy.enabled -}}
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -53,8 +54,6 @@ spec:
           command:
             - bash
             - -c
-            #- "tail -f /dev/null"
-            #- "./epp_proxy start"
             - "./epp_proxy start && sleep 10 && tail -f release/log/erlang.log.1"
           volumeMounts:
           - name: ca-combo
@@ -73,3 +72,4 @@ spec:
         - name: server-tls
           secret:
             secretName: {{ .Values.ingress.tls.secretName }}
+{{- end }}
