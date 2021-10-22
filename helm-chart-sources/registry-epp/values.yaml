@@ -54,6 +54,13 @@ service:
 
 secretName: epp-cert
 
+# EPP specific variables
+epp:
+  # EPP proxy specific variables
+  proxy:
+    # Should the EPP proxy be enabled?
+    enabled: false
+
 ingress:
   # TLS cert and key
   tls:
