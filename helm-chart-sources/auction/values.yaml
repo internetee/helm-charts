@@ -87,7 +87,12 @@ resources:
     memory: 128Mi
 
 configmap:
-  database: auction-staging-db
+  # Database configuration file
+  database: auction-db
+  # Customization yaml file for auction app
+  customization: auction-customization
+  # Static content server config
+  static: auction-static-config
 
 autoscaling:
   enabled: true

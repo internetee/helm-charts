@@ -49,4 +49,4 @@ spec:
       volumes:
         - name: default-conf
           configMap: 
-            name: st-auction-static-config
+            name: {{ .Values.configmap.static }}

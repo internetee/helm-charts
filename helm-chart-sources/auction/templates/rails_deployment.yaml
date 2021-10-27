@@ -60,16 +60,16 @@ spec:
           - name: database-config
             mountPath: "/opt/webapps/app/config/database.yml"
             subPath: "database.yml"
-          # - name: customization-config
-          #   mountPath: /opt/webapps/app/config/customization.yml
-          #   subPath: customization.yml
+          - name: customization-config
+            mountPath: "/opt/webapps/app/config/customization.yml"
+            subPath: "customization.yml"
       imagePullSecrets:
        - name: {{ .Values.imagePullSecrets }}
       volumes:
         - name: database-config
           configMap: 
-            name: st-auction-db-config
+            name: {{ .Values.configmap.database }}
         - name: customization-config
           configMap:
-            name: st-auction-custom-config
+            name: {{ .Values.configmap.customization }}
 
