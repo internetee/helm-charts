@@ -28,8 +28,6 @@ spec:
           env:
             - name: ELASTIC_APM_SERVER_URL
               value: 'http://apm-server-apm-server.apm.svc.cluster.local:8200:'
-            - name: APP_DBHOST
-              value: 195.43.87.134
             - name: RAILS_ENV
               value: staging
             - name: SECRET_KEY_BASE
