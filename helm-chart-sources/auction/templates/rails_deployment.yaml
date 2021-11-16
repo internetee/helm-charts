@@ -30,6 +30,8 @@ spec:
               value: 'http://apm-server-apm-server.apm.svc.cluster.local:8200:'
             - name: RAILS_ENV
               value: staging
+            - name: REDIRECT_URI
+              value: "{{ .Values.nameOverride }}-{{ .Values.reference }}.{{ .Values.baseUrl }}/auth/tara/callback"
             - name: SECRET_KEY_BASE
               valueFrom:
                 secretKeyRef:
