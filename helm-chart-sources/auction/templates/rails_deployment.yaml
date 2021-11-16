@@ -31,7 +31,7 @@ spec:
             - name: RAILS_ENV
               value: staging
             - name: REDIRECT_URI
-              value: "{{ .Values.nameOverride }}-{{ .Values.reference }}.{{ .Values.baseUrl }}/auth/tara/callback"
+              value: "https://{{ .Values.nameOverride }}-{{ .Values.reference }}.{{ .Values.baseUrl }}/auth/tara/callback"
             - name: SECRET_KEY_BASE
               valueFrom:
                 secretKeyRef:
