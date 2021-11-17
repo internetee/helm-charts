@@ -27,8 +27,6 @@ spec:
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           env:
-            - name: APP_DBHOST
-              value: 195.43.87.134
             - name: RAILS_ENV
               value: staging
             - name: SECRET_KEY_BASE
@@ -44,16 +42,17 @@ spec:
           #   httpGet:
           #     path: /
           #     port: http
-          # readinessProbe:
-          #   httpGet:
-          #     path: /
-          #     port: http
+          readinessProbe:
+            tcpSocket:
+              port: 3000
+            initialDelaySeconds: 20
+            periodSeconds: 10
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
           command:
             - bash
             - -c 
-            - "bundle exec rails server -b 0.0.0.0"
+            - "bundle exec rails jobs:work"
           volumeMounts:
           - name: database-config
             mountPath: "/opt/webapps/app/config/database.yml"
@@ -66,7 +65,7 @@ spec:
       volumes:
         - name: database-config
           configMap: 
-            name: st-auction-db-config
+            name: {{ .Values.configmap.database }}
         - name: customization-config
           configMap:
             name: st-auction-custom-config
