@@ -27,6 +27,8 @@ spec:
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           env:
+            - name: DEPLOYMENT_NAME
+              value: "Auction_scheduler_{{ .Values.reference }}"
             - name: RAILS_ENV
               value: staging
             - name: SECRET_KEY_BASE
