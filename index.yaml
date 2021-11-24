@@ -3,7 +3,7 @@ entries:
   accreditation:
   - apiVersion: v2
     appVersion: 1.16.0
-    created: "2021-11-18T15:11:28.788344598+02:00"
+    created: "2021-11-24T11:56:54.505887063+02:00"
     description: A Helm chart for Kubernetes
     digest: c103cb1a77498d7e58980d4862023d53e3ec6143b7122f2d67de67094f23e600
     icon: https://www.internet.ee/images/favicon-32x32.png
@@ -14,7 +14,7 @@ entries:
     version: 1.0.2
   - apiVersion: v2
     appVersion: 1.16.0
-    created: "2021-11-18T15:11:28.787542087+02:00"
+    created: "2021-11-24T11:56:54.505134233+02:00"
     description: A Helm chart for Kubernetes
     digest: 991c2cc5b06d97d6bbeb3de781affb40411b143ad7f6f763831fd32575818e0f
     icon: https://www.internet.ee/images/favicon-32x32.png
@@ -25,7 +25,7 @@ entries:
     version: 1.0.1
   - apiVersion: v2
     appVersion: 1.16.0
-    created: "2021-11-18T15:11:28.786726088+02:00"
+    created: "2021-11-24T11:56:54.504389595+02:00"
     description: A Helm chart for Kubernetes
     digest: 554c94fba91213b9b816fbb2cf08d37ac44254eca7c3665e7f9a6f4665287e19
     icon: https://www.internet.ee/images/favicon-32x32.png
@@ -36,7 +36,7 @@ entries:
     version: 1.0.0
   - apiVersion: v2
     appVersion: 1.16.0
-    created: "2021-11-18T15:11:28.785991569+02:00"
+    created: "2021-11-24T11:56:54.503741979+02:00"
     description: A Helm chart for Kubernetes
     digest: e99294a14b3f9c65ab57020f4058d45989e0400137ce5dfaf9a852994639b6f1
     name: accreditation
@@ -46,7 +46,7 @@ entries:
     version: 0.3.0
   - apiVersion: v2
     appVersion: 1.16.0
-    created: "2021-11-18T15:11:28.785196561+02:00"
+    created: "2021-11-24T11:56:54.503150611+02:00"
     description: A Helm chart for Kubernetes
     digest: 3a5acad71c41a9f8b67dae9103677bf70647263e926e305233acd06a07ce42dc
     name: accreditation
@@ -56,7 +56,7 @@ entries:
     version: 0.2.0
   - apiVersion: v2
     appVersion: 1.16.0
-    created: "2021-11-18T15:11:28.784483162+02:00"
+    created: "2021-11-24T11:56:54.502490637+02:00"
     description: A Helm chart for Kubernetes
     digest: 174f0e3fd3d6feb236343f1e038bb565047c554b997a602540c425b0dc78cd12
     name: accreditation
@@ -67,7 +67,18 @@ entries:
   auction:
   - apiVersion: v2
     appVersion: 1.16.0
-    created: "2021-11-18T15:11:28.793052224+02:00"
+    created: "2021-11-24T11:56:54.51047747+02:00"
+    description: A Helm chart for Auction centre
+    digest: 4c5a204dfae6a5840fd57d6695e8a574040b3ae0c34d4d021cd288b3d172b3b2
+    icon: https://www.internet.ee/images/favicon-32x32.png
+    name: auction
+    type: application
+    urls:
+    - https://internetee.github.io/helm-charts/auction-1.3.2.tgz
+    version: 1.3.2
+  - apiVersion: v2
+    appVersion: 1.16.0
+    created: "2021-11-24T11:56:54.50966915+02:00"
     description: A Helm chart for Auction centre
     digest: a9878435328f5e4778adc3951d73ba8977aaa4e9845948ded1b5239996b6d0c7
     icon: https://www.internet.ee/images/favicon-32x32.png
@@ -78,7 +89,7 @@ entries:
     version: 1.2.2
   - apiVersion: v2
     appVersion: 1.16.0
-    created: "2021-11-18T15:11:28.791651035+02:00"
+    created: "2021-11-24T11:56:54.508177962+02:00"
     description: A Helm chart for Auction centre
     digest: 6893a435793ed87b93c8a85aa4801885fdcb4ffb8ee14bf9abac59c06062188d
     icon: https://www.internet.ee/images/favicon-32x32.png
@@ -89,7 +100,7 @@ entries:
     version: 1.2.1
   - apiVersion: v2
     appVersion: 1.16.0
-    created: "2021-11-18T15:11:28.790759352+02:00"
+    created: "2021-11-24T11:56:54.507401087+02:00"
     description: A Helm chart for Auction centre
     digest: 373cd3f4482c4608db37928f3516146eed6e9d1b89c714198f067b22a11eefd7
     icon: https://www.internet.ee/images/favicon-32x32.png
@@ -100,7 +111,7 @@ entries:
     version: 1.1.1
   - apiVersion: v2
     appVersion: 1.16.0
-    created: "2021-11-18T15:11:28.789861101+02:00"
+    created: "2021-11-24T11:56:54.506630989+02:00"
     description: A Helm chart for Auction centre
     digest: 5481ae10ca5a047b7bb3e43924505f765ccd5251895a0a07fb0732f93397f619
     icon: https://www.internet.ee/images/favicon-32x32.png
@@ -112,7 +123,7 @@ entries:
   registry:
   - apiVersion: v2
     appVersion: 1.16.0
-    created: "2021-11-18T15:11:28.794589623+02:00"
+    created: "2021-11-24T11:56:54.512008875+02:00"
     description: A Helm chart for Kubernetes
     digest: 0e885c6b51c3a2909a4d6664f22528069e3289d8517808193d6f14ef6216f108
     name: registry
@@ -122,7 +133,7 @@ entries:
     version: 0.1.1
   - apiVersion: v2
     appVersion: 1.16.0
-    created: "2021-11-18T15:11:28.793862106+02:00"
+    created: "2021-11-24T11:56:54.511259693+02:00"
     description: A Helm chart for Kubernetes
     digest: 2f803a408f4007d4489f25da8a39bd0029ee5ee61b9d0214b50a0da763c17617
     name: registry
@@ -133,7 +144,7 @@ entries:
   registry-admin:
   - apiVersion: v2
     appVersion: 1.16.0
-    created: "2021-11-18T15:11:28.796065409+02:00"
+    created: "2021-11-24T11:56:54.513390004+02:00"
     description: A Helm chart for Kubernetes
     digest: 5ab9e6ed75245cbed0fd74e67b75f9799cd796fbf0be9a286bef3c11adfc20bf
     icon: https://www.internet.ee/images/favicon-32x32.png
@@ -144,7 +155,7 @@ entries:
     version: 1.0.0
   - apiVersion: v2
     appVersion: 1.16.0
-    created: "2021-11-18T15:11:28.795307252+02:00"
+    created: "2021-11-24T11:56:54.512688457+02:00"
     description: A Helm chart for Kubernetes
     digest: 59bca5cddf5d8d36fb5ff7fff21c880385f48e088fda373e6a775115539ab18e
     icon: https://www.internet.ee/images/favicon-32x32.png
@@ -156,7 +167,7 @@ entries:
   registry-api:
   - apiVersion: v2
     appVersion: 1.16.0
-    created: "2021-11-18T15:11:28.796722738+02:00"
+    created: "2021-11-24T11:56:54.514113966+02:00"
     description: A restful API for the Registry system
     digest: 569ddd583d1dce669210cd755e890d94ea39fe0d3d1bee666cc4c20bb2fec91e
     icon: https://www.internet.ee/images/favicon-32x32.png
@@ -168,7 +179,7 @@ entries:
   registry-epp:
   - apiVersion: v2
     appVersion: 1.16.0
-    created: "2021-11-18T15:11:28.798932509+02:00"
+    created: "2021-11-24T11:56:54.516263859+02:00"
     description: A Helm chart for Kubernetes
     digest: da1126fbaa37c60ff037e1e411cb30eb7f3189ed76a2f84d1bb3f96698d81cd0
     icon: https://www.internet.ee/images/favicon-32x32.png
@@ -179,7 +190,7 @@ entries:
     version: 1.1.0
   - apiVersion: v2
     appVersion: 1.16.0
-    created: "2021-11-18T15:11:28.798098264+02:00"
+    created: "2021-11-24T11:56:54.515583896+02:00"
     description: A Helm chart for Kubernetes
     digest: ef32bfed5b71f998cfc304033020519ceee4e18ba520a02412ae01594a6a0d1f
     icon: https://www.internet.ee/images/favicon-32x32.png
@@ -190,7 +201,7 @@ entries:
     version: 1.0.0
   - apiVersion: v2
     appVersion: 1.16.0
-    created: "2021-11-18T15:11:28.79741045+02:00"
+    created: "2021-11-24T11:56:54.514868323+02:00"
     description: A Helm chart for Kubernetes
     digest: 9debe2e55a86e8ab8e8f7c9f8ec9bb85a6457b6eb99d34afc15b6a550e7714b5
     icon: https://www.internet.ee/images/favicon-32x32.png
@@ -202,7 +213,7 @@ entries:
   rest-whois:
   - apiVersion: v2
     appVersion: 1.16.0
-    created: "2021-11-18T15:11:28.800282996+02:00"
+    created: "2021-11-24T11:56:54.517282701+02:00"
     description: A Helm chart rest whois
     digest: 98c8dbcb112f98e939452b6436a1da840e526e043087088649386af9ab21254d
     icon: https://www.internet.ee/images/favicon-32x32.png
@@ -213,7 +224,7 @@ entries:
     version: 1.0.0
   - apiVersion: v2
     appVersion: 1.16.0
-    created: "2021-11-18T15:11:28.799617213+02:00"
+    created: "2021-11-24T11:56:54.516759227+02:00"
     description: A Helm chart rest whois
     digest: f40319689dd53152637b87da61a29712def178489e1999dd80cd14e9cf17ab66
     name: rest-whois
@@ -223,7 +234,7 @@ entries:
     version: 0.1.0
   whois:
   - apiVersion: v2
-    created: "2021-11-18T15:11:28.800901232+02:00"
+    created: "2021-11-24T11:56:54.518430232+02:00"
     description: A Helm chart for Whois service
     digest: 1ee4b1c416aa6161e876e010484f80c3f6d2f0409e46a37323016ea522c38d97
     name: whois
@@ -231,4 +242,4 @@ entries:
     urls:
     - https://internetee.github.io/helm-charts/whois-0.1.0.tgz
     version: 0.1.0
-generated: "2021-11-18T15:11:28.777421737+02:00"
+generated: "2021-11-24T11:56:54.501645289+02:00"
