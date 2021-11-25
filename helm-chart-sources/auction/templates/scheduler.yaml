@@ -46,11 +46,11 @@ spec:
           #   httpGet:
           #     path: /
           #     port: http
-          readinessProbe:
-            tcpSocket:
-              port: 3000
-            initialDelaySeconds: 20
-            periodSeconds: 10
+          # readinessProbe:
+          #   tcpSocket:
+          #     port: 3000
+          #   initialDelaySeconds: 20
+          #   periodSeconds: 10
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
           command:
