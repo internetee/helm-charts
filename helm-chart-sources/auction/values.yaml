@@ -1,20 +1,24 @@
-# Default values for charts.
-# This is a YAML-formatted file.
-# Declare variables to be passed into your templates.
-
+# Amount of pod replicas
 replicaCount: 1
 
 image:
+  # Docker container repository aadress
   repository: ghcr.io/internetee/auction_center
+  # Image pulling policy
   pullPolicy: IfNotPresent
   # Overrides the image tag whose default is the chart appVersion.
   tag: ""
 
+# Container repository auth credentials.
 imagePullSecrets: regcred-eisbot
+# Depoyed service name
 nameOverride: "auction"
 fullnameOverride: "auction-st"
+# Reference to Pullrequest. Used for Staging deployments
 reference: "o0o0o0o"
+# Environment nickname. Staging - st, production - prod etc. 
 env: "st"
+# Base url for all deployed services
 baseUrl: pilv.tld.ee
 
 serviceAccount:
@@ -45,8 +49,14 @@ service:
   rails:
     port: 3000
     
+# Delayed jobs settings
 scheduler:
+  # By default, delayed jobs template is not used
   enabled: false
+
+# Path for registry api
+reg_api:
+  path: "api/v1/auctions/"
 
 host: rp-st-auction.infra.tld.ee
 tls:

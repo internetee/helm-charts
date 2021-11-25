@@ -40,7 +40,7 @@ spec:
               {{ end }}
             - name: REGISTRY_API
               {{- if eq .Values.env "st" }}
-              value: "https://reg-api-auction-{{ .Values.reference }}.{{ .Values.baseUrl }}/api"
+              value: "https://reg-api-auction-{{ .Values.reference }}.{{ .Values.baseUrl }}/{{ .Values.reg_api.path }}"
               {{- else }}
               value: "placeholder"
               {{ end }}
