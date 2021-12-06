@@ -67,9 +67,9 @@ entries:
   auction:
   - apiVersion: v2
     appVersion: 1.16.0
-    created: "2021-11-24T11:56:54.51047747+02:00"
+    created: "2021-11-25T13:33:54.757398775+02:00"
     description: A Helm chart for Auction centre
-    digest: 4c5a204dfae6a5840fd57d6695e8a574040b3ae0c34d4d021cd288b3d172b3b2
+    digest: 2030c2eccdf097f332ee5e26e54541d6fd0dc56073509ddb7b87eb6d00ad7067
     icon: https://www.internet.ee/images/favicon-32x32.png
     name: auction
     type: application
@@ -242,4 +242,4 @@ entries:
     urls:
     - https://internetee.github.io/helm-charts/whois-0.1.0.tgz
     version: 0.1.0
-generated: "2021-11-24T11:56:54.501645289+02:00"
+generated: "2021-11-25T13:33:54.748649399+02:00"
