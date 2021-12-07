@@ -74,7 +74,7 @@ spec:
       volumes:
         - name: database-config
           configMap: 
-            name: st-accreditation-db-config
+            name: {{ .Values.dbConfig }}
         - name: bot-certs
           secret:
             secretName: {{ .Values.bot.certificates }}

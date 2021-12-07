@@ -21,6 +21,8 @@ baseUrl: pilv.tld.ee
 reference: "0000"
 # database host
 dbHost: accreditation-st-db-postgresql
+# name of configmap for database config file location
+dbConfig: st-accreditation-db-config
 # Rails env name
 railsEnv: staging
 
