@@ -25,6 +25,8 @@ dbHost: accreditation-st-db-postgresql
 dbConfig: st-accreditation-db-config
 # Rails env name
 railsEnv: staging
+# apm server url
+apmUrl: 'http://apm-server-apm-server.apm.svc.cluster.local:8200:'
 
 serviceAccount:
   # Specifies whether a service account should be created

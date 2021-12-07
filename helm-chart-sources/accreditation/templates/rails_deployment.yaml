@@ -29,7 +29,7 @@ spec:
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           env:
             - name: ELASTIC_APM_SERVER_URL
-              value: 'http://apm-server-apm-server.apm.svc.cluster.local:8200:'
+              value: {{ .Values.apmUrl }}
             - name: APP_DBHOST
               value: {{ .Values.dbHost }}
             - name: RAILS_ENV
