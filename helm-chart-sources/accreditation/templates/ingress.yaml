@@ -18,10 +18,18 @@ metadata:
 spec:
   tls:
     - hosts:
+        {{- if eq .Values.status "st" }}
         - {{ .Values.nameOverride }}-{{ .Values.reference }}.{{ .Values.baseUrl }}
+        {{- else }}
+        - {{ .Values.host }}
+        {{- end }}
       secretName: {{ .Values.tls.secretName }}
   rules:
+    {{- if eq .Values.status "st" }}
     - host: {{ .Values.nameOverride }}-{{ .Values.reference }}.{{ .Values.baseUrl }}
+    {{- else }}
+    - host: {{ .Values.host }}
+    {{- end }}
       http:
         paths:
           - pathType: Prefix
