@@ -54,8 +54,10 @@ service:
   type: ClusterIP
   port: 3000
 
+# host name
 host: rp-st-auction.infra.tld.ee
 tls:
+  # secret containing tls certificate and key
   secretName: st-accreditation-cert
 
 ingress:
