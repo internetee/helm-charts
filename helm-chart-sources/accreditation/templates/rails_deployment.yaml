@@ -33,7 +33,7 @@ spec:
             - name: APP_DBHOST
               value: {{ .Values.dbHost }}
             - name: RAILS_ENV
-              value: staging
+              value: {{ .Values.railsEnv }}
             - name: SECRET_KEY_BASE
               valueFrom:
                 secretKeyRef:

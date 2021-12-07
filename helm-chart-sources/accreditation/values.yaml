@@ -21,6 +21,8 @@ baseUrl: pilv.tld.ee
 reference: "0000"
 # database host
 dbHost: accreditation-st-db-postgresql
+# Rails env name
+railsEnv: staging
 
 serviceAccount:
   # Specifies whether a service account should be created
