@@ -30,7 +30,7 @@ apmUrl: 'http://apm-server-apm-server.apm.svc.cluster.local:8200:'
 
 serviceAccount:
   # Specifies whether a service account should be created
-  create: true
+  create: false
   # Annotations to add to the service account
   annotations: {}
   # The name of the service account to use.
