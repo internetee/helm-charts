@@ -1,7 +1,11 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
+  {{- if eq .Values.status "st" }}
   name: st-{{ .Values.reference }}-{{ include "accreditation-center.name" . }}-rails
+  {{- else }}
+  name: {{ include "accreditation-center.name" . }}-rails
+  {{- end }}
   labels:
     {{- include "accreditation-center.labels" . | nindent 4 }}
     accreditation: rails

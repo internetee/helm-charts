@@ -4,7 +4,11 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
+  {{- if eq .Values.status "st" }}
   name: {{ .Values.reference }}-{{ $fullName }}
+  {{- else }}
+  name: "accreditation"
+  {{- end }}
   labels:
     {{- include "accreditation-center.labels" . | nindent 4 }}
   {{- with .Values.ingress.annotations }}
