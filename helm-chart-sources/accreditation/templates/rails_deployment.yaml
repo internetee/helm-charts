@@ -31,7 +31,7 @@ spec:
             - name: ELASTIC_APM_SERVER_URL
               value: 'http://apm-server-apm-server.apm.svc.cluster.local:8200:'
             - name: APP_DBHOST
-              value: accreditation-st-db-postgresql
+              value: {{ .Values.dbHost }}
             - name: RAILS_ENV
               value: staging
             - name: SECRET_KEY_BASE
