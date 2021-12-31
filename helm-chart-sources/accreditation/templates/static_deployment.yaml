@@ -1,7 +1,11 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
+  {{- if eq .Values.status "st" }}
   name: st-{{ .Values.reference }}-{{ include "accreditation-center.name" . }}-static
+  {{- else }}
+  name: {{ include "accreditation-center.name" . }}-static
+  {{- end }}
   labels:
     {{- include "accreditation-center.labels" . | nindent 4 }}
     accreditation: static
@@ -49,4 +53,4 @@ spec:
       volumes:
         - name: default-conf
           configMap: 
-            name: st-accreditation-static-config
+            name: {{ .Values.staticConfig }}

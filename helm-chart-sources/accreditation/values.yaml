@@ -1,6 +1,5 @@
 # Default values for accreditation-center.
 # This is a YAML-formatted file.
-# Declare variables to be passed into your templates.
 
 replicaCount: 1
 
@@ -10,16 +9,30 @@ image:
   # Overrides the image tag whose default is the chart appVersion.
   tag: ""
 
+# secret name for pulling image from private repository
 imagePullSecrets: regcred-eisbot
 nameOverride: "accreditation"
 fullnameOverride: "accreditation-st"
+# status of the installation, default st - staging
 status: st
+# base url, used to compine urls for different envirs
 baseUrl: pilv.tld.ee
-reference: "o0o0o0o"
+# Pullrequest reference. Used to create url for staging envir. Type shuld be int.
+reference: "0000"
+# database host
+dbHost: accreditation-st-db-postgresql
+# name of configmap for database config file location
+dbConfig: st-accreditation-db-config
+# Rails env name
+railsEnv: staging
+# name of configmap for static content nginx servers config
+staticConfig: st-accreditation-static-config
+# apm server url
+apmUrl: "http://apm-server-apm-server.apm.svc.cluster.local:8200"
 
 serviceAccount:
   # Specifies whether a service account should be created
-  create: true
+  create: false
   # Annotations to add to the service account
   annotations: {}
   # The name of the service account to use.
@@ -43,8 +56,10 @@ service:
   type: ClusterIP
   port: 3000
 
+# host name
 host: rp-st-auction.infra.tld.ee
 tls:
+  # secret containing tls certificate and key
   secretName: st-accreditation-cert
 
 ingress:

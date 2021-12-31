@@ -1,7 +1,11 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
+  {{- if eq .Values.status "st" }}
   name: st-{{ .Values.reference }}-{{ include "accreditation-center.name" . }}-rails
+  {{- else }}
+  name: {{ include "accreditation-center.name" . }}-rails
+  {{- end }}
   labels:
     {{- include "accreditation-center.labels" . | nindent 4 }}
     accreditation: rails
@@ -29,11 +33,11 @@ spec:
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           env:
             - name: ELASTIC_APM_SERVER_URL
-              value: 'http://apm-server-apm-server.apm.svc.cluster.local:8200:'
+              value: {{ .Values.apmUrl }}
             - name: APP_DBHOST
-              value: accreditation-st-db-postgresql
+              value: {{ .Values.dbHost }}
             - name: RAILS_ENV
-              value: staging
+              value: {{ .Values.railsEnv }}
             - name: SECRET_KEY_BASE
               valueFrom:
                 secretKeyRef:
@@ -69,12 +73,22 @@ spec:
           - name: bot-certs
             mountPath: "/opt/ca/private/client.key"
             subPath: client.key
+          {{- if ne .Values.status "st" }}
+          - name: application-config
+            mountPath: "/opt/webapps/app/config/application.yml"
+            subPath: "application.yml"
+          {{- end }}
       imagePullSecrets:
        - name: {{ .Values.imagePullSecrets }}
       volumes:
         - name: database-config
           configMap: 
-            name: st-accreditation-db-config
+            name: {{ .Values.dbConfig }}
         - name: bot-certs
           secret:
             secretName: {{ .Values.bot.certificates }}
+        {{- if ne .Values.status "st" }}
+        - name: application-config
+          configMap:
+            name: {{ .Values.applicationConfig }}
+        {{- end }}
