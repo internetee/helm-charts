@@ -73,6 +73,11 @@ spec:
           - name: bot-certs
             mountPath: "/opt/ca/private/client.key"
             subPath: client.key
+          {{- if ne .Values.status "st" }}
+          - name: application-config
+            mountPath: "/opt/webapps/app/config/application.yml"
+            subPath: "application.yml"
+          {{- end }}
       imagePullSecrets:
        - name: {{ .Values.imagePullSecrets }}
       volumes:
@@ -82,3 +87,8 @@ spec:
         - name: bot-certs
           secret:
             secretName: {{ .Values.bot.certificates }}
+        {{- if ne .Values.status "st" }}
+        - name: application-config
+          configMap:
+            name: {{ .Values.applicationConfig }}
+        {{- end }}

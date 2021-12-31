@@ -25,6 +25,8 @@ dbHost: accreditation-st-db-postgresql
 dbConfig: st-accreditation-db-config
 # Rails env name
 railsEnv: staging
+# name of configmap for static content nginx servers config
+staticConfig: st-accreditation-static-config
 # apm server url
 apmUrl: "http://apm-server-apm-server.apm.svc.cluster.local:8200"
 
