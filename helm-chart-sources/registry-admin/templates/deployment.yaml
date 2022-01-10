@@ -30,6 +30,10 @@ spec:
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           env:
+            {{- if eq .Values.env "st" }}
+            - name: APP_NAME
+              value: {{ .Values.reference }}"-st-admin"
+              {{- end }}
             - name: RAILS_ENV
               value: {{ .Values.environment }}
             - name: REDIS_URL
@@ -64,9 +68,21 @@ spec:
           - name: database-config
             mountPath: "/opt/webapps/app/config/database.yml"
             subPath: "database.yml"
-          - name: cert-container
+          - name: openssl-config
+            mountPath: "/opt/config/openssl.conf"
+            subPath: "openssl.conf"
+          - name: crl
             mountPath: "/opt/ca/crl/crl.pem"
             subPath: "crl.pem"
+          - name: crl-updater
+            mountPath: "/opt/ca/crl/crlupdate.sh"
+            subPath: "crlupdate.sh"
+          - name: ca-crt
+            mountPath: "/opt/ca/certs/ca.crt.pem"
+            subPath: "ca.crt.pem"
+          - name: ca-key
+            mountPath: "/opt/ca/private/ca.key.pem"
+            subPath: "ca.key.pem"
       volumes:
         - name: application-conf
           configMap:
@@ -74,6 +90,19 @@ spec:
         - name: database-config
           configMap:
             name: {{ .Values.configmap.database }}
-        - name: cert-container
+        - name: openssl-config
+          configMap:
+            name: {{ .Values.configmap.openssl_config }}
+        - name: crl
           secret:
-            secretName: {{ .Values.secret.cert_container }}
+            secretName: {{ .Values.secret.crl }}
+        - name: crl-updater
+          secret:
+            secretName: {{ .Values.secret.crl_updater }}
+        - name: ca-crt
+          secret:
+            secretName: {{ .Values.secret.ca_crt }}
+        - name: ca-key
+          secret:
+            secretName: {{ .Values.secret.ca_key }}
+            

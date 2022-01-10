@@ -15,7 +15,8 @@ nameOverride: "reg-admin"
 fullnameOverride: "reg-adm-st"
 status: "st"
 baseUrl: pilv.tld.ee
-reference: "eis"
+# Reference to Pullrequest. Used for Staging deployments
+reference: "00000"
 environment: "staging"
 
 serviceAccount:
@@ -55,9 +56,13 @@ ingress:
 configmap:
   database: reg-admin-database-config
   application: reg-admin-application-config
+  openssl_config: reg-admin-ssl-conf
 
 secret:
-  cert_container: reg-admin-crl
+  crl: reg-admin-crl
+  crl_updater: reg-admin-crl-updater
+  ca_crt: reg-admin-ca
+  ca_key: reg-admin-ca-key
 
 resources: {}
   # limits:
