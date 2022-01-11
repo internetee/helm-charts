@@ -30,6 +30,12 @@ spec:
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           env:
+            {{- if eq .Values.env "st" }}
+            - name: APP_NAME
+              value: {{ .Values.reference }}-st-admin
+            - name: REG_API_BASE_URL
+              value: {{include "staging.url" .}}
+            {{- end }}
             - name: RAILS_ENV
               value: {{ .Values.environment }}
             - name: REDIS_URL
@@ -61,12 +67,23 @@ spec:
           - name: application-conf
             mountPath: "/opt/webapps/app/config/application.yml"
             subPath: "application.yml"
+            readOnly: true
           - name: database-config
             mountPath: "/opt/webapps/app/config/database.yml"
             subPath: "database.yml"
-          - name: cert-container
+            readOnly: true
+          - name: openssl-config
+            mountPath: "/opt/config/openssl.conf"
+            subPath: "openssl.conf"
+          - name: crl
             mountPath: "/opt/ca/crl/crl.pem"
             subPath: "crl.pem"
+          - name: ca-crt
+            mountPath: "/opt/ca/certs/ca.crt.pem"
+            subPath: "ca.crt.pem"
+          - name: ca-key
+            mountPath: "/opt/ca/private/ca.key.pem"
+            subPath: "ca.key.pem"
       volumes:
         - name: application-conf
           configMap:
@@ -74,6 +91,16 @@ spec:
         - name: database-config
           configMap:
             name: {{ .Values.configmap.database }}
-        - name: cert-container
+        - name: openssl-config
+          configMap:
+            name: {{ .Values.configmap.openssl_config }}
+        - name: crl
           secret:
-            secretName: {{ .Values.secret.cert_container }}
+            secretName: {{ .Values.secret.crl }}
+        - name: ca-crt
+          secret:
+            secretName: {{ .Values.secret.ca_crt }}
+        - name: ca-key
+          secret:
+            secretName: {{ .Values.secret.ca_key }}
+            
