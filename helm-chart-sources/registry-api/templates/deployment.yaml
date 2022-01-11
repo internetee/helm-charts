@@ -64,9 +64,6 @@ spec:
           - name: database-config
             mountPath: "/opt/webapps/app/config/database.yml"
             subPath: "database.yml"
-          - name: cert-container
-            mountPath: "/opt/ca/crl/crl.pem"
-            subPath: "crl.pem"
       volumes:
         - name: application-conf
           configMap:
@@ -74,6 +71,3 @@ spec:
         - name: database-config
           configMap:
             name: {{ .Values.configmap.database }}
-        - name: cert-container
-          secret:
-            secretName: {{ .Values.secret.cert_container }}
