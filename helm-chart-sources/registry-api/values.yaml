@@ -59,7 +59,7 @@ configmap:
   application: reg-api-application-config
 
 secret:
-  cert_container: reg-api-crl
+
 
 resources: {}
   # limits:
