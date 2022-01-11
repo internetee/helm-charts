@@ -14,6 +14,7 @@ imagePullSecrets: regcred-eisbot
 nameOverride: "reg-admin"
 fullnameOverride: "reg-adm-st"
 status: "st"
+env: "st"
 baseUrl: pilv.tld.ee
 # Reference to Pullrequest. Used for Staging deployments
 reference: "00000"
@@ -60,7 +61,6 @@ configmap:
 
 secret:
   crl: reg-admin-crl
-  crl_updater: reg-admin-crl-updater
   ca_crt: reg-admin-ca
   ca_key: reg-admin-ca-key
 
