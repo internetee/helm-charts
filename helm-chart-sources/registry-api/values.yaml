@@ -51,7 +51,7 @@ secretName: reg-api-cert
 ingress:
   enabled: true
   annotations:
-    nginx.ingress.kubernetes.io/whitelist-source-range: 171.22.247.18/24
+    nginx.ingress.kubernetes.io/whitelist-source-range: 171.22.247.17/24
     
 
 configmap:
