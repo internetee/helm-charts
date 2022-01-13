@@ -49,13 +49,17 @@ service:
 secretName: reg-api-cert
 
 ingress:
+# Enables the ingress
   enabled: true
   annotations:
+  # Ip range from where incoming traffic is allowed
     nginx.ingress.kubernetes.io/whitelist-source-range: 171.22.247.17/24
     
 
 configmap:
+# Database configuration file
   database: reg-api-database-config
+  # Application configuration file
   application: reg-api-application-config
 
 secret:
