@@ -26,8 +26,6 @@ spec:
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           env:
-            - name: ELASTIC_APM_SERVER_URL
-              value: 'http://apm-server-apm-server.apm.svc.cluster.local:8200:'
             - name: DEPLOYMENT_NAME
               value: "Auction_centre_{{ .Values.reference }}"
             - name: RAILS_ENV
