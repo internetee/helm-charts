@@ -33,6 +33,10 @@ spec:
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           env:
+            {{- if eq .Values.env "st" }}
+            - name: APP_NAME
+              value: {{ .Values.reference }}-epp
+            {{- end }}
             - name: RAILS_ENV
               value: {{ .Values.environment }}
             - name: REDIS_URL
