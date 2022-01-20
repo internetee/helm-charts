@@ -66,7 +66,7 @@ ingress:
   # TLS cert and key
   tls:
     # Name of the secret containing servers TLS cert and key
-    secretName: epp-cert
+    secretName: st-epp-cert
   # Enable or disable ingress for deployment
   enabled: true
   # Extra annotations for Nginx
