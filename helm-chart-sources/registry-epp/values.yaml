@@ -17,6 +17,7 @@ nameOverride: "epp"
 fullnameOverride: "epp-st"
 # Deployment status
 status: "st"
+env: "st"
 # So to say domain used for staging
 baseUrl: pilv.tld.ee
 # PullRequest reference number
@@ -65,7 +66,7 @@ ingress:
   # TLS cert and key
   tls:
     # Name of the secret containing servers TLS cert and key
-    secretName: epp-cert
+    secretName: st-epp-cert
   # Enable or disable ingress for deployment
   enabled: true
   # Extra annotations for Nginx
