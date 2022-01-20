@@ -17,6 +17,7 @@ nameOverride: "epp"
 fullnameOverride: "epp-st"
 # Deployment status
 status: "st"
+env: "st"
 # So to say domain used for staging
 baseUrl: pilv.tld.ee
 # PullRequest reference number
