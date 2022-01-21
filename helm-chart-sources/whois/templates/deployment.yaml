@@ -4,7 +4,7 @@ metadata:
   name: {{ include "whois.fullname" . }}
   labels:
     {{- include "whois.labels" . | nindent 4 }}
-    app: wh
+    app: whois
 spec:
   {{- if not .Values.autoscaling.enabled }}
   replicas: {{ .Values.replicaCount }}
@@ -21,6 +21,8 @@ spec:
       labels:
         {{- include "whois.selectorLabels" . | nindent 8 }}
     spec:
+      imagePullSecrets:
+        - name: {{ .Values.imagePullSecrets }}
       containers:
         - name: {{ .Chart.Name }}
           tty: true

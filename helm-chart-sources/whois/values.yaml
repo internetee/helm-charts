@@ -5,12 +5,14 @@
 replicaCount: 1
 
 image:
-  repository: internetee/whois
+  repository: ghcr.io/internetee/whois
   pullPolicy: IfNotPresent
   # Reference to Pullrequest. Used for Staging deployments
   tag: 0000
 
-imagePullSecrets: []
+# Image pulling secrets
+imagePullSecrets: regcred-eisbot
+
 nameOverride: ""
 fullnameOverride: ""
 
