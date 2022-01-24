@@ -4,7 +4,7 @@ metadata:
   name: {{ include "whois.fullname" . }}
   labels:
     {{- include "whois.labels" . | nindent 4 }}
-    app: wh
+    app: whois
 spec:
   {{- if not .Values.autoscaling.enabled }}
   replicas: {{ .Values.replicaCount }}
@@ -21,6 +21,8 @@ spec:
       labels:
         {{- include "whois.selectorLabels" . | nindent 8 }}
     spec:
+      imagePullSecrets:
+        - name: {{ .Values.imagePullSecrets }}
       containers:
         - name: {{ .Chart.Name }}
           tty: true
@@ -28,7 +30,9 @@ spec:
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           env:
             - name: APP_DBHOST
-              value: whois-test-db-postgresql
+              value: whois-db-postgresql
+            - name: WHOIS_ENV
+              value: staging
           ports:
             - name: whois
               containerPort: 43
@@ -38,17 +42,19 @@ spec:
           #   httpGet:
           #     path: /
           #     port: http
-          # readinessProbe:
-          #   httpGet:
-          #     path: /
-          #     port: http
+          readinessProbe:
+            tcpSocket:
+              port: 43
+            initialDelaySeconds: 10
+            periodSeconds: 10
           command:
             - ruby
             - whois.rb
             - run
           volumeMounts:
           - name: database-config
-            mountPath: /opt/webapps/app/config
+            mountPath: "/opt/webapps/app/config/database.yml"
+            subPath: "database.yml"
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
       volumes:

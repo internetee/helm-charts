@@ -5,14 +5,18 @@
 replicaCount: 1
 
 image:
-  repository: internetee/whois
+  repository: ghcr.io/internetee/whois
   pullPolicy: IfNotPresent
-  # Overrides the image tag whose default is the chart appVersion.
-  tag: "latest"
+  # Reference to Pullrequest. Used for Staging deployments
+  tag: 0000
 
-imagePullSecrets: []
+# Image pulling secrets
+imagePullSecrets: regcred-eisbot
+
 nameOverride: ""
 fullnameOverride: ""
+# Rails environment name
+environment: staging
 
 service:
   # App container name
@@ -23,19 +27,6 @@ service:
 
   # App service port
   port: 43
-
-ingress:
-  enabled: false
-  annotations: {}
-    # kubernetes.io/ingress.class: nginx
-    # kubernetes.io/tls-acme: "true"
-  hosts:
-    - host: chart-example.local
-      paths: []
-  tls: []
-  #  - secretName: chart-example-tls
-  #    hosts:
-  #      - chart-example.local
 
 resources:
   # We usually recommend not to specify default resources and to leave this as a conscious
@@ -50,10 +41,10 @@ resources:
     memory: 128Mi
 
 configmap:
-    database: whois-testing-db
+    database: whois-database-config
 
 app:
-  status: "testing"
+  status: "staging"
 
 autoscaling:
   enabled: true

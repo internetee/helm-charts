@@ -1,6 +1,7 @@
 apiVersion: v2
 name: whois
 description: A Helm chart for Whois service
+icon: https://www.internet.ee/images/favicon-32x32.png
 
 # A chart can be either an 'application' or a 'library' chart.
 #
@@ -15,6 +16,6 @@ type: application
 # This is the chart version. This version number should be incremented each time you make changes
 # to the chart and its templates, including the app version.
 # Versions are expected to follow Semantic Versioning (https://semver.org/)
-version: 0.1.0
+version: 0.2.0
 
 
