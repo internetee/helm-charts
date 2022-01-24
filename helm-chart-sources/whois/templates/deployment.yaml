@@ -31,6 +31,8 @@ spec:
           env:
             - name: APP_DBHOST
               value: whois-test-db-postgresql
+            - name: RAILS_ENV
+              value: {{ .Values.environment }}
           ports:
             - name: whois
               containerPort: 43
