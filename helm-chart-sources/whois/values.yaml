@@ -16,7 +16,7 @@ imagePullSecrets: regcred-eisbot
 nameOverride: ""
 fullnameOverride: ""
 # Rails environment name
-environment: "staging"
+environment: staging
 
 service:
   # App container name
