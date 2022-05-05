@@ -35,7 +35,11 @@ spec:
             - name: ELASTIC_APM_SERVER_URL
               value: {{ .Values.apmUrl }}
             - name: APP_DBHOST
-              value: {{ .Values.dbHost }}
+              # value: {{ .Values.dbHost }}
+              valueFrom:
+                secretKeyRef:
+                  name: st-db-host
+                  key: DB_HOST
             - name: RAILS_ENV
               value: {{ .Values.railsEnv }}
             - name: SECRET_KEY_BASE
