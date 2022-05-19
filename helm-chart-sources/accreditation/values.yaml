@@ -20,7 +20,8 @@ baseUrl: pilv.tld.ee
 # Pullrequest reference. Used to create url for staging envir. Type shuld be int.
 reference: "0000"
 # database host
-dbHost: accreditation-db-postgresql
+# dbHost: accreditation-db-postgresql
+dbHost: accreditation-db-postgresql.accreditation.svc.cluster.local
 # name of configmap for database config file location
 dbConfig: st-accreditation-db-config
 # Rails env name
